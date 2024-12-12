@@ -12,33 +12,6 @@ from mediapipe.tasks.python import vision
 
 st.sidebar.title('Sign Language Detection ')
 
-@st.cache_data
-def image_resize(image, width=None, height=None, inter=cv2.INTER_AREA):
-
-    dim = None
-    (h, w) = image.shape[:2]
-
-    if width is None and height is None:
-        return image
-
-    # check to see if the width is None
-    if width is None:
-
-        r = height / float(h)
-        dim = (int(w * r), height)
-
-
-    else:
-
-        r = width / float(w)
-        dim = (width, int(h * r))
-
-
-    resized = cv2.resize(image, dim, interpolation=inter)
-
-
-    return resized
-
 app_mode = st.sidebar.selectbox('Choose the App mode',
 ['Sign Language to Text','Text to sign Language'])
 
@@ -55,10 +28,7 @@ if app_mode == 'Sign Language to Text':
     stframe = st.empty()
 
 
-    cam=cv2.VideoCapture(0)
-
-    width = int(cam.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))  
+    cam=cv2.VideoCapture(0) 
 
     st.markdown("<hr/>", unsafe_allow_html=True)
 
@@ -88,9 +58,6 @@ if app_mode == 'Sign Language to Text':
         
         frame=cv2.putText(frame, gesture, (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
         
-
-        
-        stframe.image(frame, channels='BGR', use_column_width=True)
 
 else:
     st.title('Text to Sign Language (The System uses Indian Sign Language)')
