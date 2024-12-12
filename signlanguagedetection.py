@@ -60,7 +60,7 @@ if app_mode == 'Sign Language to Text':
         
 
 else:
-    st.title('Text to Sign Language (The System uses Indian Sign Language)')
+    st.title('Text to Sign Language')
 
 
     
