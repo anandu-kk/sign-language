@@ -24,9 +24,7 @@ if app_mode == 'Sign Language to Text':
     
     st.markdown(' ## Output')
     
-
     stframe = st.empty()
-
 
     cam=cv2.VideoCapture(0) 
 
